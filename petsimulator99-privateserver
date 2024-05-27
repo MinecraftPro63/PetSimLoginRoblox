@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Your Title Here"/>
+<meta property="og:description" content="Your Description Here"/>
+<meta property="og:image" content="https://example.com/your-image.jpg"/>
+<title>"Pet Simulator 99 Private Server"</title>
+</head>
+<body>
+
+<script>
+window.onload = function() {
+  // Replace 'https://example.com/new-website' with the URL you want to redirect to
+  window.location.href = 'https://example.com/new-website';
+};
+</script>
+
+</body>
+</html>
