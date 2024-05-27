@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # or the branch you want to deploy from
+      - main  # Adjust if deploying from a different branch
 
 jobs:
   build:
@@ -13,17 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
     - name: Replace secret in HTML
       run: |
-        sed -i 's|__WEBHOOK_URL__|${{ secrets.WEBHOOK }}|g' public/index.html
+        sed -i 's|__WEBHOOK_URL__|${{ secrets.WEBHOOK }}|g' index.html
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+        publish_dir: .  # Adjust if your site is in a subdirectory
