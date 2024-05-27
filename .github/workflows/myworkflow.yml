@@ -1,4 +1,4 @@
-name: Webhook Trigger
+name: Trigger Webhook
 
 on:
   push:
@@ -6,11 +6,10 @@ on:
       - main
 
 jobs:
-  trigger_webhook:
+  trigger-webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Webhook
-        env:
-          WEBHOOK_SECRET: ${{ secrets.WEBHOOK }}
-        run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"key": "value"}' $WEBHOOK
+    - name: Run curl to trigger webhook
+      run: curl -X POST -H "Content-Type: application/json" -d '{"key": "value"}' ${{ secrets.WEBHOOK }}
+      env:
+        WEBHOOK: ${{ secrets.WEBHOOK }}
