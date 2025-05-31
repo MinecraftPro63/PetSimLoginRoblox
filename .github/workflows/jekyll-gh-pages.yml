@@ -22,13 +22,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Notify Discord of new deploy
-        run: |
-          curl -H "Content-Type: application/json" \
-               -X POST \
-               -d '{"content":"✅ Site was deployed successfully!"}' \
-               ${{ secrets.WEBHOOK }}
-
+      - name: Replace webhook placeholder
+        run: sed -i "s|__WEBHOOK__|${{ secrets.WEBHOOK }}|g" share-code-9a9fa6fd062d9740a9808e08505ffc40-type-/server.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
